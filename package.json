@@ -1,0 +1,65 @@
+{
+  "name": "reviews",
+  "version": "1.0.0",
+  "description": "reviews component for FoodiGo app",
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/jest_config.js"
+    ]
+  },
+  "main": "server/serverIndex.js",
+  "scripts": {
+    "test": "NODE_ENV=MONGOTEST jest",
+    "dev": "./node_modules/.bin/webpack -d --watch",
+    "prod": "./node_modules/.bin/webpack -p",
+    "start": "NODE_ENV=MONGO node server/serverIndex.js",
+    "start-dev": "NODE_ENV=MONGO nodemon server/serverIndex.js",
+    "seed-db": "node mockData/seedFunc.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoodiGo/Reviews.git"
+  },
+  "author": "Sara Brandes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FoodiGo/Reviews/issues"
+  },
+  "homepage": "https://github.com/FoodiGo/Reviews#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "css-loader": "^0.28.10",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "moment": "^2.20.1",
+    "mongoose": "^5.0.6",
+    "proptypes": "^1.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "router": "^1.3.2",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.12.2",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "faker": "^4.1.0",
+    "jest": "^22.4.0",
+    "nodemon": "^1.15.1",
+    "react-test-renderer": "^16.2.0",
+    "supertest": "^3.0.0"
+  }
+}

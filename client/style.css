@@ -1,0 +1,308 @@
+.rev_userPhotos {
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+}
+
+.rev_review {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  font-family: 'Roboto', sans-serif;
+  border: solid;
+  border-width: 1px; 
+  border-color: #fff;
+  border-top-color: #eee;
+  min-height: 285px;
+}
+
+.rev_userActions {
+  display: none;
+}
+
+.rev_review:hover .rev_userActions {
+  display: block;
+}
+
+.rev_users {
+  flex-basis: 200px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.rev_userFlex {
+  display: flex;
+  flex-direction: row;
+}
+
+.rev_reviewData {
+  flex-basis: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+#rev_write {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  font-family: 'Roboto', sans-serif;
+}
+
+.rev_starImg {
+  width: 13px;
+  height: 13px;
+  display: flex;
+  mix-blend-mode: color-dodge;
+}
+
+.rev_star {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7%;
+  margin: 1px;
+}
+
+.rev_writeStar .rev_star {
+  height: 30px;
+  width: 30px;
+  margin: 2px;
+}
+
+.rev_writeStar .rev_starImg {
+  height: 20px;
+  width: 20px;
+}
+
+.rev_greyStar {
+  background-color: #CCCCCC;
+}
+
+.rev_selectedStar {
+  background-color: #EF5D53;
+}
+
+.rev_starBox, .rev_starsDateBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.rev_writeStar .rev_starBox {
+  margin: 5px;
+  padding: 3px;
+}
+
+.rev_date {
+  margin: 2px;
+  color: #666;
+}
+
+.rev_buttonHeader {
+  font-weight: 900;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.rev_buttonBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.rev_buttonAspect {
+  margin: 2px;
+}
+
+.rev_socialPoints {
+  height: 30px;
+  color: #666;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  border-radius: 5%;
+  margin: 3px;
+  border: solid;
+  border-color: #ADACAC;
+  border-width: 1px;
+  font-weight: 900;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.rev_socialPoints:hover {
+  background-color: #fff;
+}
+
+.rev_buttonImage {
+  height: 15px;
+  width: 15px;
+  color: black;
+}
+
+.rev_userNames {
+  font-size: 16px;
+  font-weight: 900;
+  color: #006EB2;
+}
+
+.rev_userLocations {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.rev_userActions {
+  font-size: 12px;
+  font-weight: 900;
+  color: #006EB2;
+}
+
+.rev_userRight {
+  margin: 5px;
+}
+
+.rev_action {
+  margin: 2px;
+  padding: 2px;
+  
+}
+
+.rev_actionLine {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  border: solid;
+  border-width: 1px; 
+  border-color: #fff;
+  border-bottom-color: #eee;
+  width: 100%;
+}
+
+.rev_lastAction {
+  border: none;
+}
+
+.rev_actionIcons {
+  height: 12px;
+  width: 12px;
+}
+
+.rev_action:hover, .rev_userNames:hover, #rev_startReview:hover {
+  text-decoration: underline;
+}
+
+#rev_writeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: #006EB2;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  border: solid;
+  border-color: #e6e6e6;
+  border-width: 1px;
+  flex-basis: 75%
+}
+
+#rev_restName {
+  font-weight: 900;
+}
+
+#rev_startReview {
+  margin: 5px;
+  padding: 3px;
+  border: solid;
+  border-width: 1px;
+  border-color: #f5f5f5;
+  border-top-color: #ADACAC;
+}
+
+.rev_currUser .rev_userNames {
+ background-color: #eee;
+ border-radius: 3px;
+}
+
+.rev_userIcons {
+  height: 12px;
+  width: 12px;
+  border-radius: 2px;
+}
+
+.rev_userSpecials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rev_specialsCount {
+  font-size: 12px;
+  color: #666;
+  margin: 2px;
+}
+
+.rev_specialsNum {
+  font-weight: 900;
+}
+
+.rev_clickStars, #rev_startReview {
+  font-family: 'Roboto', sans-serif;
+  color: #006EB2;
+}
+
+#rev_writeReviewBox {
+  margin: 3px;
+  padding: 3px;
+}
+
+#rev_input {
+  height: 50px;
+  width: 350px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#rev_writeButtonBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 3px;
+}
+
+#rev_writeCancel, #rev_submitButton {
+  height: 30px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  background-color: #EF5D53;
+  border-radius: 3px;
+  margin: 3px;
+  border: solid;
+  border-color: #B8433E;
+  border-width: 1px;
+  font-weight: 900;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#rev_writeCancel:hover, #rev_submitButton:hover {
+  background-color: #E54C49;
+}
+
+.rev_hide {
+  display: none;
+}

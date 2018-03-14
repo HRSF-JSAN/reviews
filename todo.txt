@@ -1,0 +1,23 @@
+10,000,000 restaurants
+  restaurantId: Number
+  restaurantName: String,
+
+10,000,000 reviews
+  - restaurantID
+  - reviewID
+  - location
+
+10,000,000 users
+  - restaurant
+  let userName: String,
+  let userPhoto: String,
+  let userLocation: String,
+  let userFriends: Number,
+  let userReviews: Number,
+
+  let rating: Number,
+  let date: Date,
+  let reviewBody: String,
+  let useful: Number,
+  let funny: Number,
+  let cool: Number,
