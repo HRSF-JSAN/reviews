@@ -3,69 +3,69 @@ const faker = require('faker');
 const mongoose = require('mongoose');
 const fs = require('fs');
 
-let dbURI = 'mongodb://localhost/ReviewTest';
+let dbURI = 'mongodb://localhost/Restaurant';
 
 const reviewSchema = mongoose.Schema({
-  restaurant: Number,
   restaurantName: String,
-  userName: String,
-  userPhoto: String,
-  userLocation: String,
-  userFriends: Number,
-  userReviews: Number,
-  rating: Number,
-  date: Date,
-  reviewBody: String,
-  useful: Number,
-  funny: Number,
-  cool: Number,
+  reviews: []
 });
 
-const Review = mongoose.model('ReviewTest', reviewSchema);
+const Restaurant = mongoose.model('Restaurant', reviewSchema);
 
-const fakeReview = () => {
-    let reviewObj = {};
-    reviewObj.restaurantName = faker.random.word();
-    reviewObj.userName = faker.internet.userName();
-    reviewObj.userPhoto = faker.lorem.sentence();
-    reviewObj.userLocation = faker.address.city();
-    reviewObj.userFriends = faker.random.number();
-    reviewObj.userReviews = faker.random.number();
-    reviewObj.rating = faker.random.number();
+const fakeRestaurant = (i) => {
 
-    let randomDate = faker.date.between('2015-01-01', '2015-01-05');
+    let restaurant = {};
+    restaurant._id = i;
+    restaurant.restaurantName = faker.name.firstName();
+    restaurant.reviews = [];
+    for (let i = 0; i < 5; i++) {
+      let review = {};
+      review.userName = faker.internet.userName();
+      review.userPhoto = faker.image.animals();
+      review.userLocation = faker.address.city();
+      review.userFriends = faker.random.number(10);
+      review.userReviews = faker.random.number(100);
+      review.rating = faker.random.number(5);
 
-    reviewObj.date = randomDate;
-    reviewObj.reviewBody = faker.lorem.sentence();
-    reviewObj.useful = faker.random.number();
-    reviewObj.funny = faker.random.number();
-    reviewObj.cool = faker.random.number();
+      let randomDate = faker.date.between('2015-01-01', '2015-01-05');
 
-    return JSON.stringify(reviewObj);
+      review.date = randomDate;
+      review.reviewBody = faker.lorem.sentences();
+      review.useful = faker.random.number(7);
+      review.funny = faker.random.number(7);
+      review.cool = faker.random.number(7);
+
+      restaurant.reviews.push(review);
+    }
+    return JSON.stringify(restaurant);
 };
 
 // Write the data to the supplied writable stream one million times.
 // Be attentive to back-pressure.
-// function writeOneMillionTimes(writer, data, encoding, callback) {
-let wstream = fs.createWriteStream('myOutput.txt');
-function writeOneMillionTimes(writer, encoding, callback) {
-  let i = 1000000;
+let wstream = fs.createWriteStream('./mockData/restaurants.json');
+
+function writeTenMillionTimes(writer, encoding, callback) {
+  let start = new Date();
+  let i = 10000000;
   write();
-  // for (let j = 0; i < records; i++) {
-  //   let review = fakeReview();
-  //   fs.appendFileSync(`./${fileNumber}.txt`, JSON.stringify(review));
-  // };
   function write() {
     let ok = true;
     do {
       i--;
       if (i === 0) {
         // last time!
-        writer.write(fakeReview() +'/n', encoding, callback);
+        let data = fakeRestaurant();
+        writer.write(data +'\n', encoding, callback);
       } else {
         // see if we should continue, or wait
         // don't pass the callback, because we're not done yet.
-        ok = writer.write(fakeReview() +'/n', encoding);
+        if (i % 10000 === 0) {
+          let end = new Date();
+          console.log(`wrote 10,000 in ${ (end - start)/1000} seconds`);
+          start = new Date();
+        } 
+        let data = fakeRestaurant();
+        ok = writer.write(data +'\n', encoding);
       }
     } while (i > 0 && ok);
     if (i > 0) {
@@ -75,8 +75,7 @@ function writeOneMillionTimes(writer, encoding, callback) {
     }
   }
 }
-
-writeOneMillionTimes(wstream, 'utf8', () => console.log('done!'));
+writeTenMillionTimes(wstream, 'utf8', () => console.log('Wrote 10 million!'));
 
 // ----------------------------------2 mins to write 1 million records to file ---------------------------
 // let writeToFile = (num) => {
@@ -141,11 +140,11 @@ writeOneMillionTimes(wstream, 'utf8', () => console.log('done!'));
 //   let arr = [];
 
 //   for (var i = 0; i < num; i++) {
-//     const newReview = fakeReview();
+//     const newReview = JSON.parse(fakeReview(i));
 //     arr.push(newReview);
 //   }
 
-//   Review.collection.insert(arr, () => {
+//   Restaurant.collection.insert(arr, () => {
 //     console.log("done!")
 //     let end = new Date();
 //     console.log(`Inserted ${num} in ${ (end - start)/1000 } seconds`);
@@ -153,7 +152,7 @@ writeOneMillionTimes(wstream, 'utf8', () => console.log('done!'));
 //   });
 // };
 
-// addtoDB(500000);
+// addtoDB(1);
 //----------------------------------------------------------------------------------------------------------------
 
 //1000 in 1.333 seconds--------------------------------------------------------------------------------------------
