@@ -9,11 +9,11 @@
   },
   "main": "server/serverIndex.js",
   "scripts": {
-    "test": "NODE_ENV=MONGOTEST jest",
+    "test": "jest",
     "dev": "./node_modules/.bin/webpack -d --watch",
     "prod": "./node_modules/.bin/webpack -p",
     "start": "NODE_ENV=MONGO node server/serverIndex.js",
-    "start-dev": "NODE_ENV=MONGO nodemon server/serverIndex.js",
+    "start-dev": "nodemon server/serverIndex.js",
     "seed-db": "node mockData/seedFunc.js",
     "write-db": "mongoimport --db Restaurant --collection restaurants --drop --file mockData/restaurants.json"
   },

@@ -2,37 +2,44 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // mongoose.connect(process.env[process.env.NODE_ENV]);
+let dbURI = 'mongodb://localhost/Restaurant';
+mongoose.connect(dbURI);
 
-const reviewSchema = mongoose.Schema({
-  restaurant: Number,
+// const reviewSchema = mongoose.Schema({
+//   restaurant: Number,
+//   restaurantName: String,
+//   userName: String,
+//   userPhoto: String,
+//   userLocation: String,
+//   userFriends: Number,
+//   userReviews: Number,
+//   rating: Number,
+//   date: Date,
+//   reviewBody: String,
+//   useful: Number,
+//   funny: Number,
+//   cool: Number,
+// });
+
+const restaurantSchema = mongoose.Schema({
   restaurantName: String,
-  userName: String,
-  userPhoto: String,
-  userLocation: String,
-  userFriends: Number,
-  userReviews: Number,
-  rating: Number,
-  date: Date,
-  reviewBody: String,
-  useful: Number,
-  funny: Number,
-  cool: Number,
+  reviews: [],
 });
 
-const Review = mongoose.model('Review', reviewSchema);
+const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 const insertReview = (reviewObject, callback) => {
-  Review.create(reviewObject, (err, review) => {
+  Restaurant.create(reviewObject, (err, review) => {
     callback(err, review);
   });
 };
 
 const findReview = (reviewId, callback) => {
-  Review.findById(reviewId).exec(callback);
+  Restaurant.findById(reviewId).exec(callback);
 };
 
 const updateReview = (reviewId, property, value, callback) => {
-  Review.findById(reviewId, (err, review) => {
+  Restaurant.findById(reviewId, (err, review) => {
     if (err) {
       callback(err, null);
     }
@@ -42,11 +49,11 @@ const updateReview = (reviewId, property, value, callback) => {
 };
 
 const findReviewsByRestaurant = (restaurantId, callback) => {
-  Review.find({ restaurant: restaurantId }).sort('-date').exec(callback);
+  Restaurant.find({ restaurant: restaurantId }).sort('-date').exec(callback);
 };
 
 const findHighestRestaurantId = (callback) => {
-  Review.findOne().sort('-restaurant').exec(callback);
+  Restaurant.findOne().sort('-restaurant').exec(callback);
 };
 
 
