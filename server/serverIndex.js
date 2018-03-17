@@ -1,9 +1,14 @@
 const express = require('express');
 const parse = require('body-parser');
+const morgan = require('morgan');
+
 const router = require('./routes/routes.js');
+
 require('dotenv').config();
 
 const app = express();
+
+app.use(morgan('dev'));
 
 app.use(parse.json());
 

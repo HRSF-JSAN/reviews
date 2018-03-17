@@ -1,25 +1,25 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'client');
-var APP_DIR = path.resolve(__dirname, 'client/components');
+const BUILD_DIR = path.resolve(__dirname, 'client');
+const APP_DIR = path.resolve(__dirname, 'client/components');
 
-var config = {
+const config = {
   resolve: { extensions: ['.jsx', '.js'] },
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
         test: /\.jsx?/,
         include: APP_DIR,
-        loader: 'babel-loader'
-      }
-    ]
-  }
+        loader: 'babel-loader',
+      },
+    ],
+  },
 };
 
 module.exports = config;

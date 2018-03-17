@@ -1,81 +1,76 @@
-const writeReviews = require('./writeAllReviews.js');
-const db = require('../database/review.js');
+Promise = require("bluebird");
 const faker = require('faker');
 const mongoose = require('mongoose');
 
-// const seedDataBase = (restaurantList, callback) => {
-//   const reviews = fakeReviews(n);
-//   reviews.forEach((review, index) => {
-//     db.insertReview(review, (err) => {
-//       if (err) {
-//         callback(err);
-//       } else if (index === reviews.length - 1) {
-//         callback(null);
-//       }
-//     });
-//   });
-// };
-mongoose.connect('mongodb://localhost/ReviewTest');
-var time1 = new Date();
+let dbURI = 'mongodb://localhost/Restaurant';
+
 const reviewSchema = mongoose.Schema({
-  restaurant: Number,
+  id: Number,
   restaurantName: String,
-  userName: String,
-  userPhoto: String,
-  userLocation: String,
-  userFriends: Number,
-  userReviews: Number,
-  rating: Number,
-  date: Date,
-  reviewBody: String,
-  useful: Number,
-  funny: Number,
-  cool: Number,
+  reviewsCount: Number,
+  reviews: [],
 });
 
-const Review = mongoose.model('ReviewTest', reviewSchema);
+const Restaurant = mongoose.model('Restaurant', reviewSchema);
 
-let runner = 0;
+const fakeRestaurant = (i) => {
 
-const fakeReviews = (n) => {
-  // let restaurant: faker.random.word,
+  const restaurant = {};
+  restaurant.id = i;
+  restaurant.restaurantName = faker.name.firstName()+i+ "'s Restaurant" ;
+  restaurant.reviewsCount = Math.floor(Math.random() * 6);
+  restaurant.reviews = [];
+  for (let j = 0; j < restaurant.reviewsCount; j += 1) {
+    const review = {};
+    review.userName = faker.internet.userName();
+    review.userPhoto = faker.image.avatar();
+    review.userLocation = faker.address.city();
+    review.userFriends = faker.random.number(10);
+    review.userReviews = faker.random.number(100);
+    review.rating = faker.random.number(5);
 
-  for (let i = 0; i < n; i++) {
-    let reviewObj = {};
-    reviewObj.restaurantName = faker.random.word();
-    reviewObj.userName = faker.internet.userName();
-    reviewObj.userPhoto = faker.lorem.sentence();
-    reviewObj.userLocation = faker.address.city();
-    reviewObj.userFriends = faker.random.number();
-    reviewObj.userReviews = faker.random.number();
-    reviewObj.rating = faker.random.number();
+    let randomDate = faker.date.between('2017-12-15', '2018-03-15');
 
-    let randomDate = faker.date.between('2015-01-01', '2015-01-05');
+    review.date = randomDate;
+    review.reviewBody = faker.lorem.sentences() + i;
+    review.useful = faker.random.number(7);
+    review.funny = faker.random.number(7);
+    review.cool = faker.random.number(7);
 
-    reviewObj.date = randomDate;
-    reviewObj.reviewBody = faker.lorem.sentence();
-    reviewObj.useful = faker.random.number();
-    reviewObj.funny = faker.random.number();
-    reviewObj.cool = faker.random.number();
-    addtoDB(reviewObj);
+    restaurant.reviews.push(review);
   }
+  return JSON.stringify(restaurant);
 };
 
-const addtoDB = (review) => {
-  db.insertReview(review, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      runner++;
-      if (Number.isInteger(runner / 1000)) {
-        console.log(runner);
+let wstream = fs.createWriteStream('./mockData/restaurants.json');
+
+function writeXTimes(x, writer, encoding, callback) {
+  let start = new Date();
+  let i = x;
+
+  function write() {
+    let ok = true;
+    do {
+      i--;
+      if (i === 0) {
+        // last time!
+        const data = fakeRestaurant(i);
+        writer.write(data + '\n', encoding, callback);
+      } else {
+        if (i % 10000 === 0) {
+          let end = new Date();
+          console.log(`wrote 10,000 in ${ (end - start)/1000} seconds`);
+          start = new Date();
+        }
+        data = fakeRestaurant(i);
+        ok = writer.write(data +'\n', encoding);
       }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
     }
-  });
-};
+  }
+  write();
+}
 
-fakeReviews(20000);
-let time2 = new Date();
-let inSeconds = (time2 - time1)/1000;
-console.log(`it took ${inSeconds} seconds to insert ${runner} records`);
-
+writeXTimes(10000000, wstream, 'utf8', () => console.log('Wrote 10 million!'));
