@@ -13,19 +13,6 @@ router.post('/restaurants/:restaurantId/reviews', (req, res) => {
   if (!req.body.rating || !req.body.review || !req.body.restaurant) {
     res.sendStatus(404);
   } else {
-    // const review = {
-    //   restaurant: req.params.restaurantId,
-    //   restaurantName: req.body.restaurant,
-    //   userName: req.body.user || 'anonymous',
-    //   userPhoto: req.body.photo || 'https://s3-us-west-1.amazonaws.com/foodigouserphotos/DefaultUser.png',
-    //   userLocation: req.body.location || 'San Francisco, CA',
-    //   rating: req.body.rating,
-    //   date: new Date(),
-    //   reviewBody: req.body.review,
-    //   useful: 0,
-    //   funny: 0,
-    //   cool: 0,
-    // };
     const restaurantId = req.params.restaurantId;
     console.log(restaurantId);
     const review = {};

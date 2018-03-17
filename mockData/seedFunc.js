@@ -1,7 +1,6 @@
 Promise = require("bluebird");
 const faker = require('faker');
 const mongoose = require('mongoose');
-const fs = require('fs');
 
 let dbURI = 'mongodb://localhost/Restaurant';
 
@@ -43,8 +42,6 @@ const fakeRestaurant = (i) => {
   return JSON.stringify(restaurant);
 };
 
-// Write the data to the supplied writable stream one million times.
-// Be attentive to back-pressure.
 let wstream = fs.createWriteStream('./mockData/restaurants.json');
 
 function writeXTimes(x, writer, encoding, callback) {
@@ -60,8 +57,6 @@ function writeXTimes(x, writer, encoding, callback) {
         const data = fakeRestaurant(i);
         writer.write(data + '\n', encoding, callback);
       } else {
-        // see if we should continue, or wait
-        // don't pass the callback, because we're not done yet.
         if (i % 10000 === 0) {
           let end = new Date();
           console.log(`wrote 10,000 in ${ (end - start)/1000} seconds`);
@@ -72,8 +67,6 @@ function writeXTimes(x, writer, encoding, callback) {
       }
     } while (i > 0 && ok);
     if (i > 0) {
-      // had to stop early!
-      // write some more once it drains
       writer.once('drain', write);
     }
   }
