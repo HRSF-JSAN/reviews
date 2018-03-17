@@ -71,6 +71,7 @@ class WriteReview extends React.Component {
       };
 
       helpers.post(`/restaurants/${this.props.restId}/reviews`, request, updatePage);
+
       document.getElementById('rev_input').value = '';
 
       this.setState({

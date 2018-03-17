@@ -8,6 +8,7 @@ let dbURI = 'mongodb://localhost/Restaurant';
 const reviewSchema = mongoose.Schema({
   id: Number,
   restaurantName: String,
+  reviewsCount: Number,
   reviews: [],
 });
 
@@ -17,13 +18,13 @@ const fakeRestaurant = (i) => {
 
   const restaurant = {};
   restaurant.id = i;
-  restaurant.restaurantName = faker.name.firstName() + i;
+  restaurant.restaurantName = faker.name.firstName()+i+ "'s Restaurant" ;
+  restaurant.reviewsCount = Math.floor(Math.random() * 6);
   restaurant.reviews = [];
-  const randomNumberOfReviews = Math.floor(Math.random() * 6);
-  for (let j = 0; j < randomNumberOfReviews; j += 1) {
+  for (let j = 0; j < restaurant.reviewsCount; j += 1) {
     const review = {};
     review.userName = faker.internet.userName();
-    review.userPhoto = faker.image.animals();
+    review.userPhoto = faker.image.avatar();
     review.userLocation = faker.address.city();
     review.userFriends = faker.random.number(10);
     review.userReviews = faker.random.number(100);
@@ -76,7 +77,6 @@ function writeXTimes(x, writer, encoding, callback) {
       writer.once('drain', write);
     }
   }
-
   write();
 }
 

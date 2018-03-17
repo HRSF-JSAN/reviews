@@ -3,35 +3,33 @@ require('dotenv').config();
 
 // mongoose.connect(process.env[process.env.NODE_ENV]);
 let dbURI = 'mongodb://localhost/Restaurant';
+
 mongoose.connect(dbURI);
 
-// const reviewSchema = mongoose.Schema({
-//   restaurant: Number,
-//   restaurantName: String,
-//   userName: String,
-//   userPhoto: String,
-//   userLocation: String,
-//   userFriends: Number,
-//   userReviews: Number,
-//   rating: Number,
-//   date: Date,
-//   reviewBody: String,
-//   useful: Number,
-//   funny: Number,
-//   cool: Number,
-// });
-
 const restaurantSchema = mongoose.Schema({
+  id: Number,
   restaurantName: String,
+  reviewsCount: Number,
   reviews: [],
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
-const insertReview = (reviewObject, callback) => {
-  Restaurant.create(reviewObject, (err, review) => {
-    callback(err, review);
-  });
+const insertReview = (restaurantID, reviewObject, callback) => {
+  Restaurant.update(
+    { id: restaurantID },
+    { $push: { reviews: reviewObject } },
+    (err) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback();
+      }
+    },
+  );
+
+  // Restaurant.findOne({ id: restaurantID })
+  // .then((data)=>console.log(data));
 };
 
 const findReview = (reviewId, callback) => {
@@ -49,7 +47,7 @@ const updateReview = (reviewId, property, value, callback) => {
 };
 
 const findReviewsByRestaurant = (restaurantId, callback) => {
-  Restaurant.find({ restaurant: restaurantId }).sort('-date').exec(callback);
+  Restaurant.find({ id: restaurantId }).exec(callback);
 };
 
 const findHighestRestaurantId = (callback) => {
