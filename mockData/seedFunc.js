@@ -1,6 +1,7 @@
 Promise = require("bluebird");
 const faker = require('faker');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 let dbURI = 'mongodb://localhost/Restaurant';
 
