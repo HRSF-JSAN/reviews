@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../../database/review.js');
+const db = require('../../database/psqlReview.js');
 const faker = require('faker');
 const router = express.Router();
 

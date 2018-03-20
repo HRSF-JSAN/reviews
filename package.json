@@ -16,9 +16,8 @@
     "start-dev": "nodemon server/serverIndex.js",
     "create-mongo-Data": "node mockData/seedFunc.js",
     "write-to-mongo": "mongoimport --db Restaurant --collection restaurants --drop --file mockData/restaurants.json",
-    "create-psql-rest-data": "node mockData/psql/psqlRestFakerSeedFunc.js",
-    "create-psql-users-data": "node mockData/psql/psqlUsersFakerSeedFunc.js",
-    "create-psql-reviews-data": "node mockData/psql/psqlReviewsFakerSeedFunc.js"
+    "create-psql-data": "node mockData/psql/psqlCreateFakeData.js",
+    "write-psql-data": "psql foodigo < mockData/psql/psqlWriteData.sql "
   },
   "repository": {
     "type": "git",

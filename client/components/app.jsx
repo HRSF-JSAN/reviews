@@ -22,6 +22,7 @@ class App extends React.Component {
 
   setReviews(restaurantId) {
     helpers.get(`/restaurants/${restaurantId}/reviews`, (data) => {
+      console.log(data);
       this.setState({
         reviews: data[0].reviews,
         restaurant: data[0].restaurantName,

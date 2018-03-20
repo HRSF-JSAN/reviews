@@ -8,3 +8,4 @@ npm-debug.log
 archive.zip
 .elasticbeanstalk
 mockData/restaurants.json
+mockData/psql/csv_files

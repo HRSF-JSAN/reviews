@@ -1,9 +1,8 @@
-
 exports.up = (knex, Promise) => {
   return Promise.all([
     knex.schema.createTable('restaurants', (table) => {
       table.integer('restaurant_id').primary();
-      table.string('restuarant_name');
+      table.string('restaurant_name');
     }),
     knex.schema.createTable('users', (table) => {
       table.integer('user_id').primary();
@@ -14,13 +13,15 @@ exports.up = (knex, Promise) => {
     }),
     knex.schema.createTable('reviews', (table) => {
       table.integer('review_id').primary();
-      table.integer('user_id').unsigned()
-        .references('users.user_id');
-      table.integer('restaurant_id').unsigned()
-        .references('restaurants.restaurant_id');
+      // table.integer('user_id').unsigned();
+      table.integer('user_id');
+      // .references('users.user_id');
+      table.integer('restaurant_id');
+      // table.integer('restaurant_id').unsigned();
+      // .references('restaurants.restaurant_id');
       table.integer('rating');
-      table.dateTime('date');
-      table.string('review_body');
+      table.string('date');
+      table.string('review_body', 500);
       table.string('useful');
       table.string('funny');
       table.string('cool');

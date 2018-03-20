@@ -13,7 +13,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="bundle.js" type="text/javascript"></script>
     <script>
-      var resID = Math.floor(Math.random()*10000000);
+      var resID = Math.floor(Math.random()*10000000 + 1);
       ReactDOM.render(
         React.createElement(ReviewApp, { restaurantId: resID }),
         document.getElementById('app'),
