@@ -1,8 +1,8 @@
 config:
   target: 'http://localhost:8080'
   phases:
-    - duration: 5
-      arrivalCount: 300
+    - duration: 60
+      arrivalCount: 20000
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
@@ -11,7 +11,7 @@ scenarios:
       - loop:
           - get:
               url: "/restaurants/57900/reviews/"
-        count: 200
+        count: 20
 
 
 

@@ -14,6 +14,7 @@
     "prod": "./node_modules/.bin/webpack -p",
     "start": "NODE_ENV=MONGO node server/serverIndex.js",
     "start-dev": "nodemon server/serverIndex.js",
+    "start-node": "nodemon server/nodeServer.js",
     "create-mongo-Data": "node mockData/seedFunc.js",
     "write-to-mongo": "mongoimport --db Restaurant --collection restaurants --drop --file mockData/restaurants.json",
     "create-psql-data": "node mockData/psql/psqlCreateFakeData.js",
