@@ -750,3 +750,8 @@
 {"v":0,"level":40,"name":"newrelic","hostname":"Arjun.local","pid":2234,"time":"2018-03-22T18:34:03.360Z","msg":"analytics event overflow, dropped 65064 events; try increasing your limit above 10000"}
 {"v":0,"level":40,"name":"newrelic","hostname":"Arjun.local","pid":2234,"time":"2018-03-22T18:35:03.332Z","msg":"analytics event overflow, dropped 129619 events; try increasing your limit above 10000"}
 {"v":0,"level":40,"name":"newrelic","hostname":"Arjun.local","pid":2234,"time":"2018-03-22T18:36:03.366Z","msg":"analytics event overflow, dropped 112628 events; try increasing your limit above 10000"}
+{"v":0,"level":40,"name":"newrelic","hostname":"Arjun.local","pid":2234,"time":"2018-03-22T18:37:03.011Z","msg":"analytics event overflow, dropped 17916 events; try increasing your limit above 10000"}
+{"v":0,"level":30,"name":"newrelic","hostname":"Arjun.local","pid":2836,"time":"2018-03-22T19:03:12.238Z","msg":"Using New Relic for Node.js. Agent version: 3.2.0; Node version: v8.9.3."}
+{"v":0,"level":30,"name":"newrelic","hostname":"Arjun.local","pid":2836,"time":"2018-03-22T19:03:12.363Z","msg":"Starting New Relic for Node.js connection process."}
+{"v":0,"level":30,"name":"newrelic","hostname":"Arjun.local","pid":2836,"time":"2018-03-22T19:03:15.140Z","msg":"Reporting to: https://rpm.newrelic.com/accounts/1917927/applications/114036581","component":"new_relic_response"}
+{"v":0,"level":30,"name":"newrelic","hostname":"Arjun.local","pid":2836,"time":"2018-03-22T19:03:15.140Z","msg":"Connected to collector-251.newrelic.com:443 with agent run ID WzIse2E6NjYxMjE1NjI4LGI6MTE0MDM2NTgzLGM6MTkxNzkyNyxkOiIzLjIuMCIsZToibm9kZWpzIixmOiJBcmp1bi5sb2NhbCIsZzpbe2E6MTE0MDM2NTgxLGI6ImZvb2RpR29fcmV2aWV3cyJ9XX0sMzkzMjA1MzU3OF0.","component":"collector_api"}
