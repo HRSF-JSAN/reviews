@@ -1,11 +1,14 @@
 const express = require('express');
-const db = require('../../database/psqlReview.js');
+// const db = require('../../database/psqlReview.js');
+const db = require('../../database/review.js');
 const faker = require('faker');
+
 const router = express.Router();
 
 router.get('/restaurants/:restaurantId/reviews', (req, res) => {
+  console.log("request sent");
   db.findReviewsByRestaurant(req.params.restaurantId, (err, data) => (
-    err ? res.sendStatus(500) : res.json(data)
+    err ? res.sendStatus(500) : res.send(data)
   ));
 });
 

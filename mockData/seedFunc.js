@@ -6,7 +6,7 @@ const fs = require('fs');
 let dbURI = 'mongodb://localhost/Restaurant';
 
 const reviewSchema = mongoose.Schema({
-  id: Number,
+  id: { type: Number, unique: true },
   restaurantName: String,
   reviewsCount: Number,
   reviews: [],
