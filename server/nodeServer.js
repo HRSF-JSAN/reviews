@@ -4,6 +4,7 @@ const http = require('http');
 const router = require('./nodeServerHelpers');
 
 http.createServer((request, response) => {
+  console.log(request.url);
 
   if (request.url === '/') {
     router.serveHTML(request, response);
