@@ -14,8 +14,11 @@
     "prod": "./node_modules/.bin/webpack -p",
     "start": "NODE_ENV=MONGO node server/serverIndex.js",
     "start-dev": "nodemon server/serverIndex.js",
-    "seed-db": "node mockData/seedFunc.js",
-    "write-db": "mongoimport --db Restaurant --collection restaurants --drop --file mockData/restaurants.json"
+    "start-node": "nodemon server/nodeServer.js",
+    "create-mongo-Data": "node mockData/seedFunc.js",
+    "write-to-mongo": "mongoimport --db Restaurant --collection restaurants --drop --file mockData/restaurants.json",
+    "create-psql-data": "node mockData/psql/psqlCreateFakeData.js",
+    "write-psql-data": "psql foodigo < mockData/psql/psqlWriteData.sql "
   },
   "repository": {
     "type": "git",
@@ -39,14 +42,19 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "jquery": "^3.3.1",
+    "knex": "^0.14.4",
     "moment": "^2.20.1",
     "mongoose": "^5.0.6",
+    "newrelic": "^3.2.0",
+    "pg": "^7.4.1",
     "proptypes": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "redis": "^2.8.0",
     "router": "^1.3.2",
     "style-loader": "^0.20.2",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "babel-jest": "^22.4.0",
@@ -60,7 +68,6 @@
     "eslint-plugin-react": "^7.7.0",
     "faker": "^4.1.0",
     "jest": "^22.4.0",
-    "morgan": "^1.9.0",
     "nodemon": "^1.15.1",
     "react-test-renderer": "^16.2.0",
     "supertest": "^3.0.0"

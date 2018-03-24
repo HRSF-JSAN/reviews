@@ -27,9 +27,6 @@ const insertReview = (restaurantID, reviewObject, callback) => {
       }
     },
   );
-
-  // Restaurant.findOne({ id: restaurantID })
-  // .then((data)=>console.log(data));
 };
 
 const findReview = (reviewId, callback) => {
@@ -51,7 +48,7 @@ const findReviewsByRestaurant = (restaurantId, callback) => {
 };
 
 const findHighestRestaurantId = (callback) => {
-  Restaurant.findOne().sort('-restaurant').exec(callback);
+  Restaurant.findOne().exec(callback);
 };
 
 

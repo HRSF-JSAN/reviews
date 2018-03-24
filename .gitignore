@@ -8,3 +8,8 @@ npm-debug.log
 archive.zip
 .elasticbeanstalk
 mockData/restaurants.json
+mockData/psql/csv_files
+dump.rdb
+newrelic_agent.log
+newrelic.js
+hello1.yml

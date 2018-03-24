@@ -1,11 +1,14 @@
 const express = require('express');
+// const db = require('../../database/psqlReview.js');
 const db = require('../../database/review.js');
 const faker = require('faker');
+
 const router = express.Router();
 
 router.get('/restaurants/:restaurantId/reviews', (req, res) => {
+  console.log("request sent");
   db.findReviewsByRestaurant(req.params.restaurantId, (err, data) => (
-    err ? res.sendStatus(500) : res.json(data)
+    err ? res.sendStatus(500) : res.send(data)
   ));
 });
 
@@ -33,21 +36,6 @@ router.post('/restaurants/:restaurantId/reviews', (req, res) => {
     ));
   }
 });
-
-// router.put('/restaurants/:restaurantId/reviews/:reviewId', (req, res) => {
-//   const requestKeys = Object.keys(req.body);
-//   const key = requestKeys[0];
-
-//   if (requestKeys.length !== 1) {
-//     res.sendStatus(404);
-//   } else if (key !== 'cool' && key !== 'funny' && key !== 'useful') {
-//     res.sendStatus(404);
-//   } else {
-//     db.updateReview(req.params.reviewId, key, req.body[key], err => (
-//       err ? res.sendStatus(500) : res.sendStatus(200)
-//     ));
-//   }
-// });
 
 router.all('/*', (req, res) => {
   res.sendStatus(404);
