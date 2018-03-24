@@ -12,21 +12,28 @@ module.exports.serveHTML = (request, response) => {
   });
 };
 
-module.exports.serveCSS = (request, response) => {
+module.exports.serveCSS = (response) => {
   const cssPath = path.join(__dirname, '../client', request.url);
   const fileStream = fs.createReadStream(cssPath, 'UTF-8');
   response.writeHead(200, { 'Content-Type': 'text/css' });
   fileStream.pipe(response);
 };
 
-module.exports.serveBundle = (request, response) => {
+module.exports.serveClientBundle = (response) => {
   const bundlePath = path.join(__dirname, '../client', request.url);
   const fileStream = fs.createReadStream(bundlePath, 'UTF-8');
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
   fileStream.pipe(response);
 };
 
-module.exports.serveRestaurant = (request, response) => {
+module.exports.serveServerBundle = (response) => {
+  const serverBundlePath = path.join(__dirname, '../client', request.url);
+  const fileStream = fs.createReadStream(serverBundlePath, 'UTF-8');
+  response.writeHead(200, { 'Content-Type': 'application/javascript' });
+  fileStream.pipe(response);
+};
+
+module.exports.serveRestaurant = (response) => {
   const reqId = request.url.split('/')[2];
   redisClient.get(reqId, (err, reply) => {
     if (err) {
