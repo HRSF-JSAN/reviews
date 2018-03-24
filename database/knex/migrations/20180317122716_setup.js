@@ -13,12 +13,8 @@ exports.up = (knex, Promise) => {
     }),
     knex.schema.createTable('reviews', (table) => {
       table.integer('review_id').primary();
-      // table.integer('user_id').unsigned();
       table.integer('user_id');
-      // .references('users.user_id');
       table.integer('restaurant_id');
-      // table.integer('restaurant_id').unsigned();
-      // .references('restaurants.restaurant_id');
       table.integer('rating');
       table.string('date');
       table.string('review_body', 500);

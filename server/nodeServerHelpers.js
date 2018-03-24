@@ -47,12 +47,10 @@ module.exports.serveRestaurant = (response) => {
         } else {
           response.writeHead(200, { 'Content-Type': 'application/json' });
           redisClient.setex(`${reqId}`, 10, JSON.stringify(data));
-          // console.log('wrote to redis: ', reqId);
           response.end(JSON.stringify(data));
         }
       });
     } else {
-      // console.log('got from redis: ', reqId);
       response.writeHead(200, { 'Content-Type': 'application/json' });
       response.end(reply);
     }

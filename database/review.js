@@ -4,17 +4,7 @@ require('dotenv').config();
 // mongoose.connect(process.env[process.env.NODE_ENV]);
 const dbURI = 'mongodb://localhost/Restaurant';
 
-const options = {
-  // useMongoClient: true,
-  // autoIndex: false, // Don't build indexes
-  // reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-  // reconnectInterval: 500, // Reconnect every 500ms
-  // poolSize: 10, // Maintain up to 10 socket connections
-  // If not connected, return errors immediately rather than waiting for reconnect
-  // bufferMaxEntries: 0,
-};
-
-mongoose.connect(dbURI, options);
+mongoose.connect(dbURI);
 
 const restaurantSchema = mongoose.Schema({
   id: Number,
@@ -37,9 +27,6 @@ const insertReview = (restaurantID, reviewObject, callback) => {
       }
     },
   );
-
-  // Restaurant.findOne({ id: restaurantID })
-  // .then((data)=>console.log(data));
 };
 
 const findReview = (reviewId, callback) => {
