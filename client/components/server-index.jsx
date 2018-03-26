@@ -1,3 +1,3 @@
-import App from './app';
+import ReviewApp from './app';
 
-export default App;
+export default ReviewApp;

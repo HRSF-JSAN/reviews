@@ -13,3 +13,5 @@ dump.rdb
 newrelic_agent.log
 newrelic.js
 hello1.yml
+client/server-bundle.js
+.gitignore

@@ -1,4 +1,3 @@
-require('newrelic');
 const express = require('express');
 const parse = require('body-parser');
 const morgan = require('morgan');
