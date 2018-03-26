@@ -12,47 +12,46 @@ module.exports.serveHTML = (request, response) => {
   });
 };
 
-module.exports.serveCSS = (response) => {
+module.exports.serveCSS = (request, response) => {
   const cssPath = path.join(__dirname, '../client', request.url);
   const fileStream = fs.createReadStream(cssPath, 'UTF-8');
   response.writeHead(200, { 'Content-Type': 'text/css' });
   fileStream.pipe(response);
 };
 
-module.exports.serveClientBundle = (response) => {
+module.exports.serveClientBundle = (request, response) => {
   const bundlePath = path.join(__dirname, '../client', request.url);
   const fileStream = fs.createReadStream(bundlePath, 'UTF-8');
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
   fileStream.pipe(response);
 };
 
-module.exports.serveServerBundle = (response) => {
+module.exports.serveServerBundle = (request, response) => {
   const serverBundlePath = path.join(__dirname, '../client', request.url);
   const fileStream = fs.createReadStream(serverBundlePath, 'UTF-8');
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
   fileStream.pipe(response);
 };
 
-module.exports.serveRestaurant = (response) => {
+module.exports.serveRestaurant = (request, response) => {
   const reqId = request.url.split('/')[2];
   redisClient.get(reqId, (err, reply) => {
     if (err) {
       throw err;
-    }
-    if (reply === null) {
+    } else if (reply !== null) {
+      response.writeHead(200, { 'Content-Type': 'application/json' });
+      response.end(reply);
+    } else {
       db.findReviewsByRestaurant(Number(reqId), (err1, data) => {
         if (err1) {
           response.statusCode = 500;
           response.end();
         } else {
           response.writeHead(200, { 'Content-Type': 'application/json' });
-          redisClient.setex(`${reqId}`, 10, JSON.stringify(data));
+          redisClient.setex(reqId, 60, JSON.stringify(data));
           response.end(JSON.stringify(data));
         }
       });
-    } else {
-      response.writeHead(200, { 'Content-Type': 'application/json' });
-      response.end(reply);
     }
   });
 };
