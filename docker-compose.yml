@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    image: arjun0419/reviews
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+      - redis
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      REDIS_HOST: redis
+      MONGO_URL: mongodb://mongo/Review
+  mongo:
+    image: 'mongo:latest'
+    ports:
+      - "27017:27017"
+  redis:
+    image: 'redis:latest'
+    ports: 
+      - "6379:6379"

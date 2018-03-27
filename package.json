@@ -12,7 +12,7 @@
     "test": "jest",
     "dev": "./node_modules/.bin/webpack -d --watch",
     "prod": "./node_modules/.bin/webpack -p",
-    "start": "NODE_ENV=MONGO node server/serverIndex.js",
+    "start": "node server/nodeServer.js",
     "start-dev": "nodemon server/serverIndex.js",
     "start-node": "nodemon server/nodeServer.js",
     "create-mongo-Data": "node mockData/seedFunc.js",

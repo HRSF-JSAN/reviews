@@ -4,7 +4,8 @@ const seedDataBase = require('../mockData/seedFunc.js');
 // require('dotenv').config();
 
 // mongoose.connect(process.env.MONGO);
-mongoose.connect('mongodb://localhost/Review');
+let connection = process.env.MONGO_URL || 'mongodb://localhost/Review';
+mongoose.connect(connection);
 
 seedDataBase(allRestaurants, err => (
   err ? console.log('seed unsuccessful') : console.log('Success!')

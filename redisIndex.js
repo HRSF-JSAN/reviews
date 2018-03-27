@@ -1,6 +1,16 @@
 const redis = require('redis');
 
-const redisClient = redis.createClient();
+let REDIS_PORT;
+
+if (process.env.REDIS_HOST) {
+  REDIS_PORT = process.env.REDIS_HOST;
+} else {
+  REDIS_PORT = 6379;
+}
+
+console.log(REDIS_PORT);
+
+const redisClient = redis.createClient({host: 'redis'});
 
 redisClient.on('error', (err) => {
   console.log('Something went wrong ', err);
