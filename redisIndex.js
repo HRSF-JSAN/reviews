@@ -10,7 +10,7 @@ let REDIS_PORT;
 
 console.log(REDIS_PORT);
 
-const redisClient = redis.createClient({ host: 'redis' });
+const redisClient = redis.createClient('redis://ec2-54-183-227-242.us-west-1.compute.amazonaws.com:6379');
 
 redisClient.on('error', (err) => {
   console.log('Something went wrong ', err);

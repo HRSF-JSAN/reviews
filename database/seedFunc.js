@@ -43,7 +43,7 @@ const fakeRestaurant = (i) => {
   return JSON.stringify(restaurant);
 };
 
-let wstream = fs.createWriteStream('./restaurants.json');
+let wstream = fs.createWriteStream('./millionRestaurants.json');
 
 function writeXTimes(x, writer, encoding, callback) {
   let start = new Date();
@@ -74,4 +74,4 @@ function writeXTimes(x, writer, encoding, callback) {
   write();
 }
 
-writeXTimes(10000000, wstream, 'utf8', () => console.log('Wrote 10 million!'));
+writeXTimes(1000000, wstream, 'utf8', () => console.log('Wrote 10 million!'));

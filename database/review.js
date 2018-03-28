@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // mongoose.connect(process.env[process.env.NODE_ENV]);
-const dbURI = process.env.MONGO_URL || 'mongodb://localhost/Restaurant';
+const dbURI = process.env.MONGO_URL || 'mongodb://ec2-54-183-205-242.us-west-1.compute.amazonaws.com/Restaurant';
 
 mongoose.connect(dbURI, (err) => {
   if (err) {
