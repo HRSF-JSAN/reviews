@@ -2,9 +2,14 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // mongoose.connect(process.env[process.env.NODE_ENV]);
-const dbURI = 'mongodb://localhost/Restaurant';
+const dbURI = process.env.MONGO_URL || 'mongodb://localhost/Restaurant';
 
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, (err) => {
+  if (err) {
+    console.log(dbURI);
+    console.log('Could not connect to Mongo Server');
+  }
+});
 
 const restaurantSchema = mongoose.Schema({
   id: Number,
@@ -44,7 +49,7 @@ const updateReview = (reviewId, property, value, callback) => {
 };
 
 const findReviewsByRestaurant = (restaurantId, callback) => {
-  Restaurant.find({ id: restaurantId }).exec(callback);
+  Restaurant.findOne({ id: restaurantId }).exec(callback);
 };
 
 const findHighestRestaurantId = (callback) => {

@@ -35,11 +35,13 @@ module.exports.serveServerBundle = (request, response) => {
 
 module.exports.serveRestaurant = (request, response) => {
   const reqId = request.url.split('/')[2];
+  // console.log("Just got request for:", reqId);
   redisClient.get(reqId, (err, reply) => {
     if (err) {
-      throw err;
+      console.log(err);
     } else if (reply !== null) {
       response.writeHead(200, { 'Content-Type': 'application/json' });
+      console.log("What i got from redis:", reply);
       response.end(reply);
     } else {
       db.findReviewsByRestaurant(Number(reqId), (err1, data) => {
@@ -47,9 +49,10 @@ module.exports.serveRestaurant = (request, response) => {
           response.statusCode = 500;
           response.end();
         } else {
+          // console.log("What i got from mongo:", data);
           response.writeHead(200, { 'Content-Type': 'application/json' });
           redisClient.setex(reqId, 60, JSON.stringify(data));
-          response.end(JSON.stringify(data));
+          response.end(JSON.stringify([data]));
         }
       });
     }

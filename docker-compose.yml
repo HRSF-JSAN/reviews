@@ -12,7 +12,7 @@ services:
       - redis
     environment:
       REDIS_HOST: redis
-      MONGO_URL: mongodb://mongo/Review
+      MONGO_URL: mongodb://mongo/Restaurant
   mongo:
     image: 'mongo:latest'
     ports:

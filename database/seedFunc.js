@@ -6,7 +6,7 @@ const fs = require('fs');
 let dbURI = 'mongodb://localhost/Restaurant';
 
 const reviewSchema = mongoose.Schema({
-  id: { type: Number, unique: true },
+  id: { type: Number, unique: true, index: true },
   restaurantName: String,
   reviewsCount: Number,
   reviews: [],
@@ -43,7 +43,7 @@ const fakeRestaurant = (i) => {
   return JSON.stringify(restaurant);
 };
 
-let wstream = fs.createWriteStream('./mockData/restaurants.json');
+let wstream = fs.createWriteStream('./restaurants.json');
 
 function writeXTimes(x, writer, encoding, callback) {
   let start = new Date();
