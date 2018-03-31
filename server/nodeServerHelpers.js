@@ -41,7 +41,7 @@ module.exports.serveRestaurant = (request, response) => {
       console.log(err);
     } else if (reply !== null) {
       response.writeHead(200, { 'Content-Type': 'application/json' });
-      console.log("What i got from redis:", reply);
+      // console.log("What i got from redis:", reply);
       response.end(reply);
     } else {
       db.findReviewsByRestaurant(Number(reqId), (err1, data) => {

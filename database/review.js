@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // mongoose.connect(process.env[process.env.NODE_ENV]);
 const dbURI = process.env.MONGO_URL || 'mongodb://ec2-54-183-205-242.us-west-1.compute.amazonaws.com/Restaurant';
-
+console.log(dbURI);
 mongoose.connect(dbURI, (err) => {
   if (err) {
     console.log(dbURI);
@@ -55,7 +55,6 @@ const findReviewsByRestaurant = (restaurantId, callback) => {
 const findHighestRestaurantId = (callback) => {
   Restaurant.findOne().exec(callback);
 };
-
 
 module.exports.insertReview = insertReview;
 module.exports.findReview = findReview;
